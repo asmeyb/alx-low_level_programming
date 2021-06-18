@@ -1,33 +1,45 @@
 #include <stdio.h>
+
 /**
-* main - Print combinations of Three digit numbers
-*
-* Return: Always 0 (Success)
-*/
+ * main - Entry point
+ *
+ * Description: prints all combinations of 3-digits
+ *
+ * Return: Always zero
+ */
+
 int main(void)
 {
-  int hundreds;
-  int tens;
-  int ones;
-  for(hundreds = 0; hundreds <= 999; hundreds++)
-    {
-      for (tens = hundreds + 10; tens <= 99; tens++)
-        {
-          for (ones = tens + 1; ones <= 9; ones++)
-	    {
-	      putchar(hundreds + '0');
-	      putchar(tens + '0');
-	      putchar(ones + '0');
+	int number;
+	int number_1;
+	int number_2;
 
-	      if (hundreds < 89)
-	       {
-	         putchar(',');
-	         putchar(' ');
-	       }
-	    }
-         }
-    }
-  putchar('\n');
-
-  return (0);
+	number = 48;
+	while (number <= 57)
+	{
+		number_1 = 48;
+		while (number_1 <= 57)
+		{
+			number_2 = 48;
+			while (number_2 <= 57)
+			{
+				if (number < number_1 && number_1 < number_2)
+				{
+					putchar(number);
+					putchar(number_1);
+					putchar(number_2);
+					if (number < 55)
+					{
+						putchar(',');
+						putchar(' ');
+					}
+				}
+				number_2++;
+			}
+			number_1++;
+		}
+		number++;
+	}
+	putchar('\n');
+	return (0);
 }
