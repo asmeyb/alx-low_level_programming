@@ -1,30 +1,28 @@
 #include "holberton.h"
-#include <stdio.h>
 
 /**
- * main - check the code for Holberton School students.
+ * _atoi - converts a string to an integer
+ * @s: string to convert
  *
- * Return: Always 0.
+ * Return: value of integer
  */
-int main(void)
+int _atoi(char *s)
 {
-    int n;
+	int i, j, n, m;
 
-    n = _atoi("98");
-    printf("%d\n", n);
-    n = _atoi("-402");
-    printf("%d\n", n);
-    n = _atoi("          ------++++++-----+++++--98");
-    printf("%d\n", n);
-    n = _atoi("214748364");
-    printf("%d\n", n);
-    n = _atoi("0");
-    printf("%d\n", n);
-    n = _atoi("Suite 402");
-    printf("%d\n", n);
-    n = _atoi("         +      +    -    -98 Battery Street; San Francisco, CA 94111 - USA             ");
-    printf("%d\n", n);
-    n = _atoi("-2147483648");
-    printf("%d\n", n);
-    return (0);
+	i = n = 0;
+	m = 1;
+	while ((*(s + i) < '0' || *(s + i) > '9') && (*(s + i) != '\0'))
+	{
+		if (*(s + i) == '-')
+			m *= -1;
+		i++;
+	}
+	j = i;
+	while ((*(s + j) >= '0') && (*(s + j) <= '9'))
+	{
+		n = n * 10 + m * (*(s + j) - '0');
+		j++;
+	}
+	return (n);
 }
