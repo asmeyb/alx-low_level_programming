@@ -1,27 +1,25 @@
 #include "holberton.h"
-
 /**
- * rot13 - encodes a string in rot13
- * @s: string to be encoded
+ * leet - encode into 1337speak
+ * @n: input value
  *
- * Return: the resulting string
+ * Return: n value
  */
-char *rot13(char *s)
+char *leet(char *n)
 {
 	int i, j;
-	char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char b[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+	char s1[] = "aAeEoOtTlL";
+	char s2[] = "4433007711";
 
-	for (i = 0; s[i] != '\0'; i++)
+	for (i = 0; n[i] != '\0'; i++)
 	{
-		for (j = 0; a[j] != '\0'; j++)
+		for (j = 0; j < 10; j++)
 		{
-			if (s[i] == a[j])
+			if (n[i] == s1[j])
 			{
-				s[i] = b[j];
-				break;
+				n[i] = s2[j];
 			}
 		}
 	}
-	return (s);
+	return (n);
 }
