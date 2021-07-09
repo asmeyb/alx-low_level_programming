@@ -1,28 +1,13 @@
-#Synopsis
+# 0x08. C - Static libraries
+## About
+An introductory project on:
+- static libraries, how they work, how to create one, and how to use them
+## Requirements
+- Ubuntu 14.04
+- gcc 4.8.4
+## File Descriptions
+**[libholberton.a](libholberton.a)** - archive library containing various functions from previous projects.
 
-Creating a static library with the following functions
-+ _putchar - writes the character c to stdout
-+ _isupper - Checks if a letter is upper case
-+ _memset - fill memory with a constant byte
-+ _strcat - Concatenates two stings
-+ _isdigit - checks for a digit (0 through 9)
-+ _memcpy - copy memory area
-+ _strncat - Concatenates two stings
-+ _strchr - returns a pointer to the first occurrence of the character c in the string s.
-+ _strlen - Calculates the length of a string
-+ _strncpy - Copies a string up to an n byte
-+ _islower - checks for lowercase character
-+ _puts - prints a string
-+ _strcmp - compares two strings
-+ _strspn - search a string for a set of bytes
-+ _isalpha - checks for lowercase or uppercase characters
-+ _strpbrk - search a string for any of a set of bytes
-+ _strstr - locate a substring
-+ _abs - computes the absolute value of an integer.
-+ _strcpy - create a copy of a string
-+ _atoi - Converts numbers in a string to integers
+**[holberton.h](holberton.h)** - header file with all of the prototypes for [libholberton.a](libholberton.a).
 
-
-## Usage
-
-To create the library run ./create_static_lib.sh
+**[create_static_lib.sh](create_static_lib.sh)** - script that creates a static library, `liball.a` with all of the functions listed in [holberton.h](holberton.h).
