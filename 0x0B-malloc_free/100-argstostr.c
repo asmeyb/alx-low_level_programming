@@ -1,42 +1,52 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include "holberton.h"
+#include <stdio.h>
+
 /**
- * argstostr - main entry
- * @ac: int input
- * @av: double pointer array
- * Return: 0
+ * _strlen - find length of a string
+ * @s: string
+ * Return: int
  */
+
+
+int _strlen(char *s)
+{
+int size = 0;
+for (; s[size] != '\0'; size++)
+;
+return (size);
+}
+
+/**
+ * *argstostr - description
+ * @ac: int
+ * @av: arguments
+ * Return: string
+ */
+
 char *argstostr(int ac, char **av)
 {
-	int i, n, k = 0, len = 0;
-	char *str;
+int i = 0, nc = 0, j = 0, cmpt = 0;
+char *s;
 
-	if (ac == 0 || av == NULL)
-		return (NULL);
+if (ac == 0 || av == NULL)
+	return (NULL);
 
-	for (i = 0; i < ac; i++)
-	{
-		for (n = 0; av[i][n]; n++)
-			len++;
-	}
-	len += ac;
+for (; i < ac; i++, nc++)
+	nc += _strlen(av[i]);
 
-	str = malloc(sizeof(char) * len + 1);
-	if (str == NULL)
-		return (NULL);
+s = malloc(sizeof(char) * nc + 1);
+if (s == 0)
+	return (NULL);
 
-	for (i = 0; i < ac; i++)
-	{
-		for (n = 0; av[i][n]; n++)
-		{
-			str[k] = av[i][n];
-			k++;
-		}
-		if (str[k] == '\0')
-		{
-			str[k++] = '\n';
-		}
-	}
-	return (str);
+for (i = 0; i < ac; i++)
+{
+	for (j = 0; av[i][j] != '\0'; j++, cmpt++)
+		s[cmpt] = av[i][j];
+
+	s[cmpt] = '\n';
+	cmpt++;
+}
+s[cmpt] = '\0';
+
+return (s);
 }
