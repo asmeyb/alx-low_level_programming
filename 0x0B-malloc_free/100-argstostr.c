@@ -1,42 +1,42 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "holberton.h"
+#include <stdlib.h>
 /**
- * argstostr - main entry
- * @ac: int input
- * @av: double pointer array
- * Return: 0
- */
+ * *argstostr - concatenates all arguements to the program
+ * @ac: arguement count
+ * @av: pointer to arguements
+ * Return: pointer to new space in memory or null
+ **/
 char *argstostr(int ac, char **av)
 {
-	int i, n, k = 0, len = 0;
-	char *str;
+	char *strDup;
+	int i, j, k, size;
 
 	if (ac == 0 || av == NULL)
 		return (NULL);
-
+	size = 0;
+/* count the number of chars in each string */
 	for (i = 0; i < ac; i++)
 	{
-		for (n = 0; av[i][n]; n++)
-			len++;
+		for (j = 0; av[i][j] != '\0'; j++)
+			size++;
+		size++;
 	}
-	len += ac;
-
-	str = malloc(sizeof(char) * len + 1);
-	if (str == NULL)
+	size++;
+/* allocate memory for total number of chars and
+ * new line for each word
+ */
+	strDup = malloc(sizeof(char) * size);
+	if (strDup == NULL)
 		return (NULL);
-
+	k = 0;
 	for (i = 0; i < ac; i++)
 	{
-		for (n = 0; av[i][n]; n++)
+		for (j = 0; av[i][j] != '\0'; j++)
 		{
-			str[k] = av[i][n];
-			k++;
+			strDup[k++] = av[i][j];
 		}
-		if (str[k] == '\0')
-		{
-			str[k++] = '\n';
-		}
+		strDup[k++] = '\n';
 	}
-	return (str);
+	strDup[k] = '\0';
+	return (strDup);
 }

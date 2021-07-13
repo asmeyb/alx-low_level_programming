@@ -1,63 +1,38 @@
+#include "holberton.h"
 #include <stdlib.h>
-#include <stdio.h>
-int len(char *str);
-
 /**
- * str_concat - Concats to strings by allocating memory
- * @s1: First string to concat
- * @s2: Second string to concat
- * Return: Pointer to an array of NULL if not enough space
- */
-
+ * *str_concat - concatenates two strings
+ * @s1: first string
+ * @s2: second string
+ * Return: pointer to new space in memory or null
+ **/
 char *str_concat(char *s1, char *s2)
 {
-	int i;
-	int s1_len;
-	int s2_len;
-	char *heap_array;
-
+	char *strDup;
+	int i, j;
 	if (s1 == NULL)
-		s1 = '\0';
-
+		s1 = "";
 	if (s2 == NULL)
-		s2 = '\0';
-	s1_len = len(s1);
-	s2_len = len(s2);
-
-	heap_array = malloc(s1_len + s2_len + 1);
-	if (heap_array == NULL)
+		s2 = "";
+	i = j = 0;
+	while (s1[i] != '\0')
+		i++;
+	while (s2[j] != '\0')
+		j++;
+	strDup = malloc(sizeof(char) * (i + j + 1));
+	if (strDup == NULL)
 		return (NULL);
-	for (i = 0; i < s1_len; i++)
+	i = j = 0;
+	while (s1[i] != '\0')
 	{
-		if (s1_len <= 0)
-			heap_array[i] = '\0';
-		else
-			heap_array[i] = s1[i];
+		strDup[i] = s1[i];
+		i++;
 	}
-	for (i = 0; i < s2_len; i++, s1_len++)
+	while (s2[j] != '\0')
 	{
-		if (s2_len <= 0)
-			heap_array[s1_len] = '\0';
-		else
-			heap_array[s1_len] = s2[i];
+		strDup[i] = s2[j];
+		i++, j++;
 	}
-	heap_array[s1_len] = '\0';
-	return (heap_array);
-}
-
-/**
- * len - Calculating the length of a string
- * @str: String to calculate len
- * Return: Integer with the size of the string if NULL returns 0
- */
-
-int len(char *str)
-{
-	int i;
-
-	if (str == NULL)
-		return (0);
-	for (i = 0; str[i] != '\0'; i++)
-	{}
-	return (i);
+	strDup[i] = '\0';
+	return (strDup);
 }
