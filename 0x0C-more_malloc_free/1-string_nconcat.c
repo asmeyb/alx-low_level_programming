@@ -1,54 +1,39 @@
+#include "holberton.h"
 #include <stdlib.h>
-unsigned int length(char *s1);
-
 /**
- * string_nconcat - Concats two strings up to n bytes of the second one
- * @s1: First string
- * @s2: Second string
- * @n: number of bytes
- * Return: Pointer to a char
- */
+ * *string_nconcat - concatenates two strings
+ * @s1: first string
+ * @s2: second string
+ * @n: limit of s2
+ * Return: pointer to new space in memory or null
+ **/
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
+	char *strDup;
 	int i;
 	unsigned int j;
-	unsigned int len;
-	char *heap_array;
 
-	/* Initializing to an empty string if value is NULL*/
 	if (s1 == NULL)
 		s1 = "";
-	if (s1 == NULL)
+	if (s2 == NULL)
 		s2 = "";
-	len = length(s1);
-	heap_array = malloc((len + n + 1) * sizeof(char));
-	if (heap_array == NULL)
+	i = 0;
+	while (s1[i] != '\0')
+		i++;
+	strDup = malloc(sizeof(char) * (i + n + 1));
+	if (strDup == NULL)
 		return (NULL);
-	len = length(s2);
-	if (n >= len)
-		n = len;
-	/*Populating the new array with values*/
-	for (i = 0; s1[i] != '\0'; i++)
-		heap_array[i] = s1[i];
-	for (j = 0; j < n; j++, i++)
-		heap_array[i] = s2[j];
-	heap_array[i] = '\0';
-	return (heap_array);
-}
-
-/**
- * length - Calculates the length of a string
- * @s1: The string
- * Return: The length of a string as an integer
- */
-unsigned int length(char *s1)
-{
-	unsigned int i;
-
-	if (s1 == NULL)
-		return (0);
-	for (i = 0; s1[i] !=  '\0'; i++)
-	{}
-
-	return (i);
+	i = j = 0;
+	while (s1[i] != '\0')
+	{
+		strDup[i] = s1[i];
+		i++;
+	}
+	while (j < n && s2[j] != '\0')
+	{
+		strDup[i] = s2[j];
+		i++, j++;
+	}
+	strDup[i] = '\0';
+	return (strDup);
 }
