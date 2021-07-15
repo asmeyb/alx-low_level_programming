@@ -1,59 +1,35 @@
 #include <stdlib.h>
 
 /**
- * _memcpy - Copy n bytes from memory area src to memory area dest
- * @dest: Memory area to copy to
- * @src: Memory area to copy from
- * @n: Amount to copy from memory area
- *
- * Return: Pointer to area
- */
-char *_memcpy(char *dest, char *src, unsigned int n)
-{
-	unsigned int i;
-
-	i = 0;
-	while (i < n)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	return (dest);
-}
-
-/**
- * _realloc - Reallocate a memory block using malloc
- * @ptr: Old memory block
- * @old_size: Size of of old memory block
- * @new_size: Size the new memory block should be
- *
- * Return: Pointer to new memory space, NULL if it fails
+ * _realloc - Creates new space in memory, copies the contents over, fre
+ * @ptr: Pointer to previously allocated array
+ * @old_size: Size of old array
+ * @new_size: Size of new array
+ * Return: Pointer to a void
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	void *nptr;
-	unsigned int min;
+	unsigned int i;
+	char *pt;
+	char *heap_array;
 
-	if (ptr == NULL)
-	{
-		nptr = malloc(new_size);
-		return (nptr);
-	}
-	if (ptr != NULL && new_size == 0)
+	if (new_size == old_size)
+		return (ptr);
+	if (new_size == 0 && ptr != NULL)
 	{
 		free(ptr);
 		return (NULL);
 	}
-	if (new_size == old_size)
-		return (ptr);
-	if (new_size < old_size)
-		min = new_size;
-	else
-		min = old_size;
-	nptr = malloc(new_size);
-	if (nptr == NULL)
+	/*Casting a void* to a char* */
+	pt = (char *)ptr;
+	heap_array = malloc(sizeof(char) * new_size);
+	if (heap_array == NULL)
 		return (NULL);
-	nptr = _memcpy(nptr, ptr, min);
+	if (ptr != NULL)
+	{
+		for (i = 0; i < old_size; i++)
+			heap_array[i] = pt[i];
+	}
 	free(ptr);
-	return (nptr);
+	return (heap_array);
 }
