@@ -10,5 +10,10 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void errors(void);
 int _strlen(char *s);
 int is_digit(char *s);
+char *check_zero(char *str, int len);
+char *remove_zeroes(char *str, int len);
+char *mul(char *num1, char *num2, int len1, int len2);
+int _isstrdigit(char *str);
+char *init(char *arr, int size)
 
 #endif
