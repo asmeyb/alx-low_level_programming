@@ -1,69 +1,66 @@
 #include "lists.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <stddef.h>
-/**
- * _strlen - gets length of the string
- * @s: string
- * Return: length of the string
- */
-int _strlen(const char *s)
-{
-	int i;
+int len(const char *str);
+list_t *create_node(const char *str);
 
-	for (i = 0; s[i]; i++)
-		;
-	return (i);
-}
 /**
- * _strdup - recreation of string duplicate function
- * @src: source of string to duplicate
- * Return: pointer to malloc'd space with copied string
- */
-void *_strdup(const char *src)
-{
-	int len, i;
-	char *dest;
-
-	len = _strlen(src);
-	dest = malloc((len + 1) * sizeof(char));
-	if (dest == NULL)
-		return (NULL);
-	for (i = 0; src[i]; i++)
-		dest[i] = src[i];
-	dest[i] = '\0';
-	return (dest);
-}
-/**
- * add_node_end - add new nodes to the end of the list
- * @head: current place in the list
- * @str: string to add to the head
- * Return: pointer to current position in list
+ * add_node_end - Adds a node at the end of a linked list.
+ * @head: pointer to the first node of a linked list.
+ * @str: String to include in the node.
+ * Return: A pointer to the head of the linked list.
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *new, *current;
-	char *dupstr;
+	list_t *tmp;
+	list_t *new_node;
 
-	if (str == NULL)
+
+	tmp = *head;
+	if (head == NULL)
 		return (NULL);
-	dupstr = _strdup(str);
-	if (dupstr == NULL)
+	new_node = create_node(str);
+	if (new_node == NULL)
 		return (NULL);
-	new = malloc(sizeof(list_t));
-	if (new == NULL)
-		return (NULL);
-	new->str = dupstr;
-	new->len = _strlen(str);
-	new->next = NULL;
-	if (*head == NULL)
+	if (*head == NULL) /*Initilizing the list with the first node*/
 	{
-		*head = new;
+		*head = new_node;
 		return (*head);
 	}
-	current = *head;
-	while (current->next != NULL)
-		current = current->next;
-	current->next = new;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = new_node;
 	return (*head);
+}
+
+/**
+ * create_node - Creates a new node.
+ * @str: String to add to the node.
+ * Return: A pointer to the allocated memory
+ */
+list_t *create_node(const char *str)
+{
+	list_t *new_node;
+
+	new_node = malloc(sizeof(list_t));
+	if (new_node == NULL)
+		return (NULL);
+	new_node->str = strdup(str);
+	new_node->len = len(str);
+	new_node->next = NULL;
+	return (new_node);
+}
+
+/**
+ * len - Calculates the length of a string.
+ * @str: Constant string
+ * Return: The length of the string
+ */
+int len(const char *str)
+{
+	int i;
+
+	if (str == NULL)
+		return (0);
+	for (i = 0; str[i] != '\0'; i++)
+		;
+	return (i);
 }
