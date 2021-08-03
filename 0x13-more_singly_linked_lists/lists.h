@@ -1,8 +1,13 @@
 #ifndef LISTS_H
 #define LISTS_H
+
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+#define IKNOW '\0'
+#define MAYBEIKNOW head
+#define IMPOSIBLEKNOW next
 /**
  * struct listint_s - singly linked list
  * @n: integer
